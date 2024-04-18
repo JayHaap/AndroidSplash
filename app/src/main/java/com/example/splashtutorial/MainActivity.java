@@ -1,6 +1,11 @@
 package com.example.splashtutorial;
 
 import android.os.Bundle;
+//import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+//    Variables
 
+    Animation topAnim, bottomAnim;
+    ImageView image;
+    TextView logo, slogan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +29,19 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+//        Animation
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
+//        Hook
+        image = findViewById(R.id.imageView);
+        logo = findViewById(R.id.textView);
+        slogan = findViewById(R.id.textView2);
+
+        image.setAnimation(topAnim);
+        logo.setAnimation(bottomAnim);
+        image.setAnimation(bottomAnim);
+
     }
 }
